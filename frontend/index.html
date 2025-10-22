@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Register</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+
+<header>
+  <div class="logo"><img src="images/logo.png" alt="College Logo"></div>
+  <div class="login-btn"><button onclick="scrollToLogin()">Login</button></div>
+</header>
+
+<section class="hero">
+  <h1>NAS Collage Of Frames</h1>
+  <p>Welcome to NAS Collage of Frames,it is a vibrant celebration of storytelling through cinema. Each frame in the collage captures a unique emotion, a fleeting moment, or a visual masterpiece, bringing together the magic of films from every genre. It’s not just a collection of images—it’s a journey through stories, moods, and imagination, where every frame whispers its own tale and collectively paints the rich tapestry of filmmaking.</p>
+</section>
+
+<section id="login" class="login-section">
+  <h2>Login</h2>
+  <div class="login-options">
+    <button onclick="showLogin('teacher')">Teacher</button>
+    <button onclick="showLogin('student')">Student</button>
+  </div>
+
+  <form id="teacher-login" class="login-form" style="display:none;" onsubmit="teacherLogin(event)">
+    <input type="text" placeholder="Username" id="teacherUsername" required>
+    <input type="password" placeholder="Password" id="teacherPassword" required>
+    <button type="submit">Login as Teacher</button>
+  </form>
+
+  <form id="student-login" class="login-form" style="display:none;" onsubmit="studentLogin(event)">
+    <input type="number" placeholder="Student ID" id="studentId" required>
+    <button type="submit">Login as Student</button>
+  </form>
+</section>
+
+<footer>
+  <p><strong>NAS College of Frames</strong></p>
+  <p>Madrid Kavala, Spain Mukk | +99 36901 77362 | nascollege@frames.com</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function scrollToLogin() {
+  document.getElementById("login").scrollIntoView({ behavior: 'smooth' });
+}
+
+function showLogin(role) {
+  document.getElementById("teacher-login").style.display = role === 'teacher' ? 'block' : 'none';
+  document.getElementById("student-login").style.display = role === 'student' ? 'block' : 'none';
+}
+
+// Sample login (no real auth)
+function teacherLogin(e) {
+  e.preventDefault();
+  window.location.href = "teacher.html";
+}
+
+function studentLogin(e) {
+  e.preventDefault();
+  const id = parseInt(document.getElementById("studentId").value);
+  localStorage.setItem('currentStudentId', id);
+  window.location.href = "student.html";
+}
+</script>
+</body>
+</html>
